@@ -9,10 +9,20 @@ namespace TucEfCore2.Data
 {
     public class ApplicationDbContext : DbContext
     {
+        public ApplicationDbContext()
+        {
+            
+        }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Server=localhost;Database=StefanShopDemo;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=true");
+        }
+
 
         public DbSet<Product> Products { get; set; }
     }
