@@ -41,7 +41,9 @@ namespace TucEfCore2
             Console.WriteLine("Uppdatera");
             Console.WriteLine("Ange id:");
             var id = Convert.ToInt32(Console.ReadLine());
+
             var p = _context.Products.FirstOrDefault(p => p.Id == id);
+
             Console.WriteLine($"Ange nytt namn för {p.Name}:");
             var namn = Console.ReadLine();
             p.Name = namn;

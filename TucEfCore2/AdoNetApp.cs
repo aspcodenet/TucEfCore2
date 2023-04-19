@@ -19,11 +19,11 @@ namespace TucEfCore2
         {
             var connection = new SqlConnection(connectionString);
             connection.Open();
-            var command = new SqlCommand("select id, name, baseprice from Products", connection);
+            var command = new SqlCommand("select id, name, baseprice, imageurl from Products", connection);
             var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                Console.WriteLine($"{reader.GetInt32(0)}  {reader.GetString(1)} {reader.GetInt32(2)}  ");
+                Console.WriteLine($"{reader.GetInt32(0)}  {reader.GetString(1)} {reader.GetInt32(2)}, {reader.GetString(3)}  ");
             }
             connection.Close();
 

@@ -20,9 +20,20 @@ namespace TucEfCore2.Data
             _context.Database.Migrate();
             //SeedRoles();
             //SeedUsers();
-            //SeedProducts();
+            
+            SeedProducts();
             //SeedAgreements();
             //SeedUserAgreements();
+        }
+
+        private void SeedProducts()
+        {
+            if (_context.Products.Any()) return;
+            for (int i = 0; i < 10; i++)
+            {
+                _context.Products.Add(new Product { Name = "namn" + i.ToString() });
+            }
+            _context.SaveChanges();
         }
     }
 }
