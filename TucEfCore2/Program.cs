@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -34,6 +35,9 @@ using (var scope = serviceProvider.CreateScope())
     var dataInitializer = scope.ServiceProvider.GetService<DataInitializer>();
     dataInitializer.SeedData();
     var app = scope.ServiceProvider.GetService<App>();
-    app.Run();
+    if (Assembly.GetEntryAssembly() == Assembly.GetExecutingAssembly())
+    {
+        scope.ServiceProvider.GetService<App>().Run();
+    }
 }
 
