@@ -27,17 +27,19 @@ var connectionString = config.GetConnectionString("DefaultConnection");
 
 services.AddTransient<DataInitializer>();
 services.AddTransient<App>();
+services.AddTransient<AdoNetApp>();
 
 var serviceProvider = services.BuildServiceProvider(true);
 
 using (var scope = serviceProvider.CreateScope())
 {
-    var dataInitializer = scope.ServiceProvider.GetService<DataInitializer>();
-    dataInitializer.SeedData();
-    var app = scope.ServiceProvider.GetService<App>();
+    //var dataInitializer = scope.ServiceProvider.GetService<DataInitializer>();
+    //dataInitializer.SeedData();
+    //var app = scope.ServiceProvider.GetService<App>();
     if (Assembly.GetEntryAssembly() == Assembly.GetExecutingAssembly())
     {
-        scope.ServiceProvider.GetService<App>().Run();
+        scope.ServiceProvider.GetService<AdoNetApp>().Run();
+        //scope.ServiceProvider.GetService<App>().Run();
     }
 }
 
